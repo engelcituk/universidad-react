@@ -7,18 +7,47 @@ const user = {
     age: 28,
     country: 'mexico'
 }
+// Este es un componente funcional con arrow functions
+// const TarjetaFruta = (props) => {
+//     console.log(props)
+//     return (
+//         <div>
+//             <h3> {props.name} </h3>
+//             <hr/>
+//             <p> $ {props.price}</p>
+//         </div>
+//     )
+// }
 
-const TarjetaFruta = (props) => {
-    console.log(props)
-    return (
-        <div>
-            <h3> {props.name} </h3>
-            <hr/>
-            <p> $ {props.price}</p>
-        </div>
-    )
+class TarjetaFruta extends React.Component {
+    constructor(){
+        super()
+
+        this.state = {
+            cantidad: 25
+        }
+    }
+    render() {
+        return (
+            <div>
+                <h3> {this.props.name} </h3>
+                <hr />
+                <div> Cantidad: { this.state.cantidad } </div>
+                <button 
+                onClick ={ () =>{
+                    // this.state.cantidad = 100
+                    // this.forceUpdate()
+                    this.setState({ cantidad: this.state.cantidad + 1 })
+                }} 
+                >Agregar</button>
+                <p> $ {this.props.price}</p>
+            </div>
+        )
+    }
 }
 // const App = <h1>Hola react *** {name} tengo { user.age} </h1>
+
+
 const App = () => (
     <div>
         {/* props vienen como atributos */}
