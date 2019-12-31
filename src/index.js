@@ -22,10 +22,39 @@ const user = {
 class TarjetaFruta extends React.Component {
     constructor(){
         super()
+        // this.agregar = this.agregar.bind(this)
+        // this.quitar = this.quitar.bind(this)
+
+        //inicializadores de propiedad
+        const METHODS = [
+            'agregar',
+            'quitar',
+            'limpiar'           
+        ]
+        // igual a lo hecho anterior con bind pero este recorre un array y hace el bind
+        METHODS.forEach( (method)=> {
+            this[method] = this[method].bind(this)
+        })
 
         this.state = {
             cantidad: 25
         }
+    }
+    agregar() {
+        this.setState({
+            cantidad: this.state.cantidad + 1 
+        })
+    }
+    quitar() {
+        this.setState({
+            cantidad: this.state.cantidad - 1
+        })
+    }
+    
+    limpiar() {
+        this.setState({
+            cantidad: 0
+        })
     }
     render() {
         return (
@@ -34,12 +63,15 @@ class TarjetaFruta extends React.Component {
                 <hr />
                 <div> Cantidad: { this.state.cantidad } </div>
                 <button 
-                onClick ={ () =>{
+                onClick = {  this.agregar //() =>{
                     // this.state.cantidad = 100
                     // this.forceUpdate()
-                    this.setState({ cantidad: this.state.cantidad + 1 })
-                }} 
-                >Agregar</button>
+                    // this.setState({ cantidad: this.state.cantidad + 1 })
+                } //} 
+                >+ </button>
+                <button onClick ={this.quitar } > - </button>
+                <button onClick={this.limpiar } > Limpiar </button>
+
                 <p> $ {this.props.price}</p>
             </div>
         )
