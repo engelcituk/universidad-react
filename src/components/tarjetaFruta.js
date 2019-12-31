@@ -1,4 +1,5 @@
 import  React  from 'react'
+import './TarjetaFruta.css' // la importacion del css es diferente al de arriba
 
 const name = 'Cituk Caamal'
 const user = {
@@ -80,17 +81,13 @@ class TarjetaFruta extends React.Component {
 
     render() {
         const hasItems = this.state.cantidad > 0
-        const styles = {
-            border: '1px solid black',
-            marginBottom: '1em',
-            borderRadius: '0.5em',
-            padding: '1em',
-            background: hasItems ? 'linear-gradient(45deg, black, #4a02f7)' : 'white',
-            color: hasItems ? '#FFF' : '#000',
-            transition: 'all 400ms ease-out'
-        }
+        const activeClass = hasItems ? 'TarjetaFrutaActiva' : '' 
+        const clases = `TarjetaFruta ${activeClass}` /* template string con termario 
+        para agregar css adicional a un elemento css existente, se puede hacer la operacion ternarion en el template string, hacer la operacion en una constante aparte o hacer una concatenacion*/
+        
         return (
-            <div style={styles}>
+            // <div style={styles}>
+            <div className={clases}>
                 <h3> {this.props.name} </h3>
                 <hr />
                 <div> Cantidad: {this.state.cantidad} </div>
