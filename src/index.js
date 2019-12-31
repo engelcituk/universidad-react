@@ -20,42 +20,65 @@ const user = {
 // }
 
 class TarjetaFruta extends React.Component {
-    constructor(){
-        super()
-        // this.agregar = this.agregar.bind(this)
-        // this.quitar = this.quitar.bind(this)
+    // constructor(){
+    //     super()
+    //     // this.agregar = this.agregar.bind(this)
+    //     // this.quitar = this.quitar.bind(this)
 
-        //inicializadores de propiedad
-        const METHODS = [
-            'agregar',
-            'quitar',
-            'limpiar'           
-        ]
-        // igual a lo hecho anterior con bind pero este recorre un array y hace el bind
-        METHODS.forEach( (method)=> {
-            this[method] = this[method].bind(this)
-        })
+    //     //inicializadores de propiedad
+    //     const METHODS = [
+    //         'agregar',
+    //         'quitar',
+    //         'limpiar'           
+    //     ]
+    //     // igual a lo hecho anterior con bind pero este recorre un array y hace el bind
+    //     METHODS.forEach( (method)=> {
+    //         this[method] = this[method].bind(this)
+    //     })
 
-        this.state = {
-            cantidad: 25
-        }
-    }
-    agregar() {
+    //     this.state = {
+    //         cantidad: 25
+    //     }
+    // }
+
+    state = {
+        cantidad: 25
+    };
+    // agregar() {
+    //     this.setState({
+    //         cantidad: this.state.cantidad + 1 
+    //     })
+    // }
+    // quitar() {
+    //     this.setState({
+    //         cantidad: this.state.cantidad - 1
+    //     })
+    // }
+    
+    // limpiar() {
+    //     this.setState({
+    //         cantidad: 0
+    //     })
+    // }
+    
+    //inicializadores de funciones, obliga a sacar el state del constructor y transforma las funciones de la clase en arrow functions
+    agregar = () => {
         this.setState({
-            cantidad: this.state.cantidad + 1 
+            cantidad: this.state.cantidad + 1
         })
     }
-    quitar() {
+    quitar = () => {
         this.setState({
             cantidad: this.state.cantidad - 1
         })
     }
-    
-    limpiar() {
+
+    limpiar = () => {
         this.setState({
             cantidad: 0
         })
     }
+
     render() {
         return (
             <div>
