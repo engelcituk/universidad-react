@@ -1,5 +1,5 @@
 import  React  from 'react'
-import TarjetaFruta from './components/tarjetaFruta';
+import TarjetaFruta from './components/TarjetaFruta';
 
 const App = () => (
     <div>
