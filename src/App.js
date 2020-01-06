@@ -82,42 +82,72 @@ import  React, {Component } from 'react'
 //     }
 // }
 /**Manejando eventos de mouse*/
-const styles = {
-    height: '200px',
-    background: 'gold',
-    padding: '1em',
-    boxSizing: 'border-box'
-}
+// const styles = {
+//     height: '200px',
+//     background: 'gold',
+//     padding: '1em',
+//     boxSizing: 'border-box'
+// }
+// class App extends Component {
+//     state = {
+//         x: 0,
+//         y:0
+//     }
+//     manejador = (evento) => {
+//         this.setState({
+//             x : evento.clientX,
+//             y: evento.clientY
+//         })
+//     }
+//     render(){
+//         return (
+//             <div style={styles}
+//                 onMouseMove = { this.manejador}            
+//             >
+//                 <div>
+//                     x: { this.state.x}                    
+//                 </div>
+//                 <div>                    
+//                     y: {this.state.y}
+//                 </div>
+//                 {/* <button
+//                 onDoubleClick={this.manejador}
+//                 >
+//                     Dispara
+//                 </button> */}
+//             </div>
+//         )
+//     }
+// }
+
+/**Ejemplo de Eventos de Input*/
 class App extends Component {
     state = {
-        x: 0,
-        y:0
+        text: '',
+        evento: ''
     }
     manejador = (evento) => {
+        console.log(evento.target.value)
         this.setState({
-            x : evento.clientX,
-            y: evento.clientY
+            text: evento.target.value,
+            evento : evento.type
         })
     }
-    render(){
+    render() {
         return (
-            <div style={styles}
-                onMouseMove = { this.manejador}            
-            >
-                <div>
-                    x: { this.state.x}                    
-                </div>
-                <div>                    
-                    y: {this.state.y}
-                </div>
-                {/* <button
-                onDoubleClick={this.manejador}
-                >
-                    Dispara
-                </button> */}
+            <div>
+                <input
+                type='text'
+                onChange={this.manejador}
+                onCopy={this.manejador}
+                onPaste={this.manejador}
+
+                />
+                <h1> { this.state.text} </h1>   
+                <h2> {this.state.evento} </h2>                
+
             </div>
         )
-    }
+    }    
 }
-
 export default App
