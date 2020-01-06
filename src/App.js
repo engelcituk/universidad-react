@@ -194,46 +194,82 @@ import './global.css'
 // )
 /**Crear Eventos personalizados con react
  */
-class App extends Component {
-    state = {
-        name: ''
-    }
-    manejador = (name) => {
-        // alert(name)
-        this.setState({ name })
-    }
-    render() {
-        return (
-            <div className="box red">
-                <Hijo
-                    onSaluda={this.manejador}
-                />
-                <h2> {this.state.name} </h2>
+// class App extends Component {
+//     state = {
+//         name: ''
+//     }
+//     manejador = (name) => {
+//         // alert(name)
+//         this.setState({ name })
+//     }
+//     render() {
+//         return (
+//             <div className="box red">
+//                 <Hijo
+//                     onSaluda={this.manejador}
+//                 />
+//                 <h2> {this.state.name} </h2>
 
-            </div>
-        )
-    }
-}
-class Hijo extends Component { // conservar eventos con react
-    manejadorClick = () => {
-        this.props.onSaluda('Mensaje del hijo para el padre')
-    }
-    render() {
-        return (
-            <div className="box blue">
-                <h2> hijo </h2>
-                <button 
-                    onClick= { 
-                        this.manejadorClick
+//             </div>
+//         )
+//     }
+// }
+// class Hijo extends Component { 
+//     manejadorClick = () => {
+//         this.props.onSaluda('Mensaje del hijo para el padre')
+//     }
+//     render() {
+//         return (
+//             <div className="box blue">
+//                 <h2> hijo </h2>
+//                 <button 
+//                     onClick= { 
+//                         this.manejadorClick
                     
-                }
-                >
-                    Saluda
-                </button>
+//                 }
+//                 >
+//                     Saluda
+//                 </button>
+//             </div>
+//         )
+//     }
+// }
+
+//  Renderizados condicionales con React
+class App extends Component {
+   
+    render() {
+        return (
+            <div>    
+                <Saludo saluda={true} name='Soy el nombre'/>
             </div>
         )
     }
 }
-
-// Crear Eventos personalizados con React
+const Saludo = (props) => {
+    return(
+       <div >
+        <div>
+            { props.name && <strong>{props.name}</strong>}
+        </div>
+        {/* con ternario */}
+        { props.saluda 
+           ? (
+            <h1> Muchos saludos para ti</h1>
+           )
+           : (
+            <p> Woops, no saludos para ti</p>
+           )
+        }
+       </div>
+    )
+    /*if (props.saluda) {
+        return (
+            <h1> Muchos saludos para ti</h1>
+        )
+    }
+    return (
+        <p> Woops, no saludos para ti</p>
+    )*/
+}
 export default App
