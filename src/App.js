@@ -121,33 +121,74 @@ import  React, {Component } from 'react'
 // }
 
 /**Ejemplo de Eventos de Input*/
-class App extends Component {
+// class App extends Component {
+//     state = {
+//         text: '',
+//         evento: ''
+//     }
+//     manejador = (evento) => {
+//         console.log(evento.target.value)
+//         this.setState({
+//             text: evento.target.value,
+//             evento : evento.type
+//         })
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <input
+//                 type='text'
+//                 onChange={this.manejador}
+//                 onCopy={this.manejador}
+//                 onPaste={this.manejador}
+
+//                 />
+//                 <h1> { this.state.text} </h1>   
+//                 <h2> {this.state.evento} </h2>                
+
+//             </div>
+//         )
+//     }    
+// }
+/**Hay una diferencia entre Evento nativo DOM y Evento Sintético de React
+ * en html todo es en minuscula, en react se usa camelCase
+ */
+
+
+class PersistenciaEventos extends Component { // conservar eventos con react
     state = {
-        text: '',
-        evento: ''
+        color : 'blue'
     }
-    manejador = (evento) => {
+    handlerChange = (evento) => {
+        // evento.persist()
+        const color = evento.target.value
+
         console.log(evento.target.value)
-        this.setState({
-            text: evento.target.value,
-            evento : evento.type
-        })
+
+        this.setState( state => ({
+            // color: evento.target.value
+            color
+        }))
     }
     render() {
         return (
             <div>
                 <input
-                type='text'
-                onChange={this.manejador}
-                onCopy={this.manejador}
-                onPaste={this.manejador}
-
+                    type='text'
+                    onChange={this.handlerChange}                
                 />
-                <h1> { this.state.text} </h1>   
-                <h2> {this.state.evento} </h2>                
-
+                <h1
+                style = {{
+                    color: this.state.color
+                }}
+                > {this.state.color} </h1> 
             </div>
         )
-    }    
+    }
 }
+const App = () => (
+    <div> 
+        <PersistenciaEventos/>       
+    </div>
+)
 export default App
