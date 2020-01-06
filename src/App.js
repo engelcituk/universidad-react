@@ -236,40 +236,64 @@ import './global.css'
 // }
 
 //  Renderizados condicionales con React
-class App extends Component {
+// class App extends Component {
    
+//     render() {
+//         return (
+//             <div>    
+//                 <Saludo saluda={true} name='Soy el nombre'/>
+//             </div>
+//         )
+//     }
+// }
+// const Saludo = (props) => {
+//     return(
+//        <div >
+//         <div>
+//             { props.name && <strong>{props.name}</strong>}
+//         </div>
+//         {/* con ternario */}
+//         { props.saluda 
+//            ? (
+//             <h1> Muchos saludos para ti</h1>
+//            )
+//            : (
+//             <p> Woops, no saludos para ti</p>
+//            )
+//         }
+//        </div>
+//     )
+//     /*if (props.saluda) {
+//         return (
+//             <h1> Muchos saludos para ti</h1>
+//         )
+//     }
+//     return (
+//         <p> Woops, no saludos para ti</p>
+//     )*/
+// }
+/** Inyectando HTML en marcado de componente con React */
+class App extends Component {
+    estado = {
+        marcadoHtml: `
+            <h1> Muchos saludos para ti</h1>
+            <br>
+            <hr>
+            <a href="#">Algun link</a>
+        `
+    }
     render() {
         return (
-            <div>    
-                <Saludo saluda={true} name='Soy el nombre'/>
+            <div>
+                <div
+                    dangerouslySetInnerHTML = {{
+                        __html: this.estado.marcadoHtml
+                    }}
+                >
+                </div>
+                {/* { this.estado.marcadoHtml}  */}
             </div>
         )
     }
-}
-const Saludo = (props) => {
-    return(
-       <div >
-        <div>
-            { props.name && <strong>{props.name}</strong>}
-        </div>
-        {/* con ternario */}
-        { props.saluda 
-           ? (
-            <h1> Muchos saludos para ti</h1>
-           )
-           : (
-            <p> Woops, no saludos para ti</p>
-           )
-        }
-       </div>
-    )
-    /*if (props.saluda) {
-        return (
-            <h1> Muchos saludos para ti</h1>
-        )
-    }
-    return (
-        <p> Woops, no saludos para ti</p>
-    )*/
 }
 export default App
