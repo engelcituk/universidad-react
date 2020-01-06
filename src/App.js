@@ -1,4 +1,5 @@
 import  React, {Component } from 'react'
+import './global.css'
 // import TarjetaFruta from './components/TarjetaFruta';
 
 // const App = () => (
@@ -155,40 +156,84 @@ import  React, {Component } from 'react'
  */
 
 
-class PersistenciaEventos extends Component { // conservar eventos con react
+// class PersistenciaEventos extends Component { // conservar eventos con react
+//     state = {
+//         color : 'blue'
+//     }
+//     handlerChange = (evento) => {
+//         // evento.persist()
+//         const color = evento.target.value
+
+//         console.log(evento.target.value)
+
+//         this.setState( state => ({
+//             // color: evento.target.value
+//             color
+//         }))
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <input
+//                     type='text'
+//                     onChange={this.handlerChange}                
+//                 />
+//                 <h1
+//                 style = {{
+//                     color: this.state.color
+//                 }}
+//                 > {this.state.color} </h1> 
+//             </div>
+//         )
+//     }
+// }
+// const App = () => (
+//     <div> 
+//         <PersistenciaEventos/>       
+//     </div>
+// )
+/**Crear Eventos personalizados con react
+ */
+class App extends Component {
     state = {
-        color : 'blue'
+        name: ''
     }
-    handlerChange = (evento) => {
-        // evento.persist()
-        const color = evento.target.value
-
-        console.log(evento.target.value)
-
-        this.setState( state => ({
-            // color: evento.target.value
-            color
-        }))
+    manejador = (name) => {
+        // alert(name)
+        this.setState({ name })
     }
     render() {
         return (
-            <div>
-                <input
-                    type='text'
-                    onChange={this.handlerChange}                
+            <div className="box red">
+                <Hijo
+                    onSaluda={this.manejador}
                 />
-                <h1
-                style = {{
-                    color: this.state.color
-                }}
-                > {this.state.color} </h1> 
+                <h2> {this.state.name} </h2>
+
             </div>
         )
     }
 }
-const App = () => (
-    <div> 
-        <PersistenciaEventos/>       
-    </div>
-)
+class Hijo extends Component { // conservar eventos con react
+    manejadorClick = () => {
+        this.props.onSaluda('Mensaje del hijo para el padre')
+    }
+    render() {
+        return (
+            <div className="box blue">
+                <h2> hijo </h2>
+                <button 
+                    onClick= { 
+                        this.manejadorClick
+                    
+                }
+                >
+                    Saluda
+                </button>
+            </div>
+        )
+    }
+}
+
+// Crear Eventos personalizados con React
 export default App
