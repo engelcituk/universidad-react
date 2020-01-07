@@ -316,14 +316,15 @@ const Title = (props) => {
 
 class App extends React.Component {
     estado = {
-        uiColor: 'purple'
+        uiColor: 'tomato'
     }
     
     render() {
+        const { uiColor } = this.estado
         return (
             <div>
                 <Title
-                    uiColor= { this.estado.uiColor}
+                    uiColor={ uiColor}
                     >
                     Super <em>coder</em>
                 </Title>
