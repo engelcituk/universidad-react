@@ -273,25 +273,60 @@ import './global.css'
 //     )*/
 // }
 /** Inyectando HTML en marcado de componente con React */
-class App extends Component {
-    estado = {
-        marcadoHtml: `
-            <h1> Muchos saludos para ti</h1>
-            <br>
-            <hr>
-            <a href="#">Algun link</a>
-        `
+// class App extends Component {
+//     estado = {
+//         marcadoHtml: `
+//             <h1> Muchos saludos para ti</h1>
+//             <br>
+//             <hr>
+//             <a href="#">Algun link</a>
+//         `
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <div
+//                     dangerouslySetInnerHTML = {{
+//                         __html: this.estado.marcadoHtml
+//                     }}
+//                 >
+//                 </div>
+//                 {/* { this.estado.marcadoHtml}  */}
+//             </div>
+//         )
+//     }
+// }
+
+// Introducción a la prop especial children
+const Title = (props) => {
+    const styles = {
+        padding: '0.3em',
+        color: '#FFF',
+        background: props.uiColor,
+        borderRadius:'0.3em',
+        textAlign: 'center',
+        fontSize: '50px'
     }
+    return (
+        <h1 style={styles}>
+            {props.children}
+        </h1>
+    )
+}
+
+class App extends React.Component {
+    estado = {
+        uiColor: 'purple'
+    }
+    
     render() {
         return (
             <div>
-                <div
-                    dangerouslySetInnerHTML = {{
-                        __html: this.estado.marcadoHtml
-                    }}
-                >
-                </div>
-                {/* { this.estado.marcadoHtml}  */}
+                <Title
+                    uiColor= { this.estado.uiColor}
+                    >
+                    Super <em>coder</em>
+                </Title>
             </div>
         )
     }
