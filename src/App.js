@@ -298,36 +298,64 @@ import './global.css'
 // }
 
 // Introducción a la prop especial children
-const Title = (props) => {
-    const styles = {
-        padding: '0.3em',
-        color: '#FFF',
-        background: props.uiColor,
-        borderRadius:'0.3em',
-        textAlign: 'center',
-        fontSize: '50px'
-    }
-    return (
-        <h1 style={styles}>
-            {props.children}
-        </h1>
-    )
-}
+// const Title = (props) => {
+//     const styles = {
+//         padding: '0.3em',
+//         color: '#FFF',
+//         background: props.uiColor,
+//         borderRadius:'0.3em',
+//         textAlign: 'center',
+//         fontSize: '50px'
+//     }
+//     return (
+//         <h1 style={styles}>
+//             {props.children}
+//         </h1>
+//     )
+// }
+
+// class App extends React.Component {
+//     estado = {
+//         uiColor: 'tomato'
+//     }
+    
+//     render() {
+//         const { uiColor } = this.estado
+//         return (
+//             <div>
+//                 <Title
+//                     uiColor={ uiColor}
+//                     >
+//                     Super <em>coder</em>
+//                 </Title>
+//             </div>
+//         )
+//     }
+// }
+// Elementos sin etiquetas con fragments
+const Computacion = () => (
+    <React.Fragment>
+        <li>Monitor</li>
+        <li>Teclado</li>
+        <li>Mouse</li>
+    </React.Fragment>
+)
+
+const Ropa = () => (
+    <React.Fragment>
+        <li>playera</li>
+        <li>Jeans</li>
+        <li>Shorts</li>
+    </React.Fragment>
+)
 
 class App extends React.Component {
-    estado = {
-        uiColor: 'tomato'
-    }
-    
+   
     render() {
-        const { uiColor } = this.estado
         return (
             <div>
-                <Title
-                    uiColor={ uiColor}
-                    >
-                    Super <em>coder</em>
-                </Title>
+                <Computacion/>
+                <Ropa/>
             </div>
         )
     }
