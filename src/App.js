@@ -1,6 +1,8 @@
 import  React, {Component } from 'react'
 import './global.css'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
+
 // import TarjetaFruta from './components/TarjetaFruta';
 
 
@@ -364,64 +366,107 @@ import ReactDOM from 'react-dom'
 // }
 // Entendiendo los portals de React
 
+// class App extends Component {
+//     state = {
+//         visible: false,
+//         num: 0
+//     }
+//     componentDidMount(){
+//         setInterval(() => {
+//             this.setState ( state => ({
+//                 num: state.num + 1
+//             }))            
+//         }, 1000);
+//     }
+//     mostrar = () => {
+//         this.setState({ visible:true})
+//     }
+//     cerrar = () => {
+//         this.setState({ visible: false })
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <button onClick={this.mostrar}>
+//                     Mostrar
+//                 </button>
+//                 <Portalmodal visible={ this.state.visible }>
+//                     <button onClick={this.cerrar}>
+//                         Cerrar
+//                     </button>
+//                     <h1>
+//                         Hola desde un modal {this.state.num}
+//                     </h1>
+//                 </Portalmodal>
+//             </div>
+//         )
+//     }
+// }
+// class Portalmodal extends Component {
+
+//     render() {
+//         if(!this.props.visible) {
+//             return null
+//         }
+//         const styles = {
+//             width: '100%',
+//             height: '100%',
+//             position:'absolute',
+//             top:'0',
+//             left:'0',
+//             background: 'linear-gradient(to top right, #667eea, #764ba2)',
+//             opacity:'0.95',
+//             color:'#FFF'
+//         }
+//         return ReactDOM.createPortal( (
+//             <div style={styles}>
+//                 {this.props.children}
+//             </div>
+//         ), document.getElementById('modal-root'))
+    
+//     }
+// }
+
+//  Controlar los datos de entrada con prop-types
+
 class App extends Component {
-    state = {
-        visible: false,
-        num: 0
-    }
-    componentDidMount(){
-        setInterval(() => {
-            this.setState ( state => ({
-                num: state.num + 1
-            }))            
-        }, 1000);
-    }
-    mostrar = () => {
-        this.setState({ visible:true})
-    }
-    cerrar = () => {
-        this.setState({ visible: false })
-    }
+    
     render() {
         return (
             <div>
-                <button onClick={this.mostrar}>
-                    Mostrar
-                </button>
-                <Portalmodal visible={ this.state.visible }>
-                    <button onClick={this.cerrar}>
-                        Cerrar
-                    </button>
-                    <h1>
-                        Hola desde un modal {this.state.num}
-                    </h1>
-                </Portalmodal>
+                <Profile
+                name= 'Luis Grte'
+                bio= 'holi soy un desarrolador fullstack'
+                email= 'emai@email.com'
+                />
             </div>
         )
     }
 }
-class Portalmodal extends Component {
+class Profile extends Component {
+    static propTypes = {
+        name: PropTypes.string,
+        bio: PropTypes.string,
+        email: PropTypes.string,
+        age: PropTypes.number
 
+    }
     render() {
-        if(!this.props.visible) {
-            return null
-        }
-        const styles = {
-            width: '100%',
-            height: '100%',
-            position:'absolute',
-            top:'0',
-            left:'0',
-            background: 'linear-gradient(to top right, #667eea, #764ba2)',
-            opacity:'0.95',
-            color:'#FFF'
-        }
-        return ReactDOM.createPortal( (
-            <div style={styles}>
-                {this.props.children}
+        const { name, bio, email } = this.props
+        return (
+            <div>
+                <h1>
+                    {name}
+                </h1>
+                <p>
+                    {bio}
+                </p>
+                <a href={`mailto:${email}`}>
+                    {email}
+                </a>
             </div>
-        ), document.getElementById('modal-root'))
-    
+        )
     }
 }
+
 export default App
