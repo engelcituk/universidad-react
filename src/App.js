@@ -675,6 +675,8 @@ class InputControlado extends Component {
         }
 
         this.setState({ text, color });
+        // propagando datos al padre
+        this.props.onChange(this.props.nameProp, text)
     }
     render() {
         const styles =  {
@@ -687,17 +689,39 @@ class InputControlado extends Component {
             value={this.state.text}
             onChange= {this.actualizar}
             style = {styles}
+            placeholder = {this.props.placeholder}
             />
         )
     }
 }
 class App extends Component {
-  
+    state = {
+        name:'',
+        email:''
+    }
+  actualizar = (propName, text) => {
+     this.setState({
+         [propName]: text
+     })
+  }
   render() {
     return (
       <div>
         <h1>Inputs No controlados</h1>
-        <InputControlado/>
+        <InputControlado
+            onChange= {this.actualizar}
+            nameProp='name'
+            placeholder= 'Nombre completo'
+        />
+
+        <InputControlado
+            onChange= {this.actualizar}
+            nameProp='email'
+            placeholder= 'tu email'
+        />
+        <h2>Nombre: {this.state.name}</h2>
+        <h2>Email: {this.state.email}</h2>
+
       </div>
     );
   }
