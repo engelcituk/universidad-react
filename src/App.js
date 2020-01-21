@@ -619,35 +619,24 @@ import './global.css'
 //  Manejando ( Inputs No controlados) con Refs
 
 
-class InputNoControlado extends Component { // componente estatal
+class InputNoControlado extends Component {
+  // componente estatal
+  handleSubmit = (evento) => {
+    evento.preventDefault()
+    const nombre = evento.target[0].value;
+    const email = evento.target[1].value;
 
-  nombre = React.createRef();
-  email = React.createRef();
-
-  handlerClick = () => {
-     const nombre = this.nombre.current.value
-     const email = this.email.current.value
-
-     //manejo de datos
-     this.props.onSend( {nombre, email})
-
-  }
+    //manejo de datos
+    this.props.onSend({ nombre, email });
+  };
 
   render() {
     return (
-      <div>
-        <input type="text" 
-        ref={this.nombre}
-        placeholder='nombre'
-        />
-        <input type="text" 
-        ref={this.email}
-        placeholder='email'
-        />
-        <button onClick={this.handlerClick}>
-            Enviar                     
-        </button>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="nombre" />
+        <input type="text" placeholder="email" />
+        <button>Enviar</button>
+      </form>
     );
   }
 }
