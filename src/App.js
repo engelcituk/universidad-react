@@ -619,39 +619,87 @@ import './global.css'
 //  Manejando ( Inputs No controlados) con Refs
 
 
-class InputNoControlado extends Component {
-  // componente estatal
-  handleSubmit = (evento) => {
-    evento.preventDefault()
-    const nombre = evento.target[0].value;
-    const email = evento.target[1].value;
+// class InputNoControlado extends Component {
+//   // componente estatal
+//   handleSubmit = (evento) => {
+//     evento.preventDefault()
+//     const nombre = evento.target[0].value;
+//     const email = evento.target[1].value;
 
-    //manejo de datos
-    this.props.onSend({ nombre, email });
-  };
+//     //manejo de datos
+//     this.props.onSend({ nombre, email });
+//   };
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="nombre" />
-        <input type="text" placeholder="email" />
-        <button>Enviar</button>
-      </form>
-    );
-  }
+//   render() {
+//     return (
+//       <form onSubmit={this.handleSubmit}>
+//         <input type="text" placeholder="nombre" />
+//         <input type="text" placeholder="email" />
+//         <button>Enviar</button>
+//       </form>
+//     )
+//   }
+// }
+// class App extends Component {
+//   send = (data) => {
+//       console.log(data);
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <h1>Inputs No controlados</h1>
+//         <InputNoControlado onSend={this.send} />
+//       </div>
+//     )
+//   }
+// }
+
+// Manejando Inputs controlados con React
+class InputControlado extends Component {
+    state = {
+        text: 'hola mundo',
+        // tieneError: false,
+        color: '#E8E8E8'
+    }
+    actualizar = (evento) => {
+        const text = evento.target.value
+        // const tieneError = text !== '' && text.length < 5
+        let color = 'green'
+
+        if(text.trim() === ''){
+            color = 'brown'
+        }
+
+        if(text.trim() !== '' && text.trim().length < 5){
+            color = 'red'
+        }
+
+        this.setState({ text, color });
+    }
+    render() {
+        const styles =  {
+                border: `1px solid ${this.state.color}`,                    
+                padding: '0.3em 0.6em',
+                outline:'none'
+            }
+        return (
+            <input type="text"
+            value={this.state.text}
+            onChange= {this.actualizar}
+            style = {styles}
+            />
+        )
+    }
 }
 class App extends Component {
-  send = (data) => {
-      console.log(data);
-  }
+  
   render() {
     return (
       <div>
         <h1>Inputs No controlados</h1>
-        <InputNoControlado onSend={this.send} />
+        <InputControlado/>
       </div>
     );
   }
 }
-
 export default App
