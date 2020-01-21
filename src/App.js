@@ -1,7 +1,7 @@
 import  React, {Component } from 'react'
 import './global.css'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
+// import ReactDOM from 'react-dom'
+// import PropTypes from 'prop-types'
 
 // import TarjetaFruta from './components/TarjetaFruta';
 
@@ -429,41 +429,88 @@ import PropTypes from 'prop-types'
 
 //  Controlar los datos de entrada con prop-types
 
-class App extends Component {
+// class App extends Component {
     
-    render() {
+//     render() {
+//         return (
+//             <div>
+//                 <Profile
+//                 // name= 'Luis Grte'
+//                 bio= 'holi soy un desarrolador fullstack'
+//                 email= 'emai@email.com'
+//                 />
+//             </div>
+//         )
+//     }
+// }
+// class Profile extends Component {
+//     static propTypes = {
+//         name: PropTypes.string,
+//         bio: PropTypes.string,
+//         email: PropTypes.string,
+//         age: PropTypes.number
+
+//     }
+//     static defaultProps = {
+//         name: 'Coder pro'
+//     }
+//     render() {
+//         const { name, bio, email } = this.props
+//         return (
+//             <div>
+//                 <h1>
+//                     {name}
+//                 </h1>
+//                 <p>
+//                     {bio}
+//                 </p>
+//                 <a href={`mailto:${email}`}>
+//                     {email}
+//                 </a>
+//             </div>
+//         )
+//     }
+// }
+
+// Que son las refs en React
+class Entrada extends Component {
+    //usando el constructor
+    // constructor (){
+    //     super()
+    //     this.entrada = React.createRef()
+    // }
+    // sin usar el constructor
+    entrada = React.createRef()
+    
+    focus = () => {
+        this.entrada.current.focus()
+     }
+    blur = () => {
+        this.entrada.current.blur()
+
+    }
+    
+    render () {
         return (
             <div>
-                <Profile
-                name= 'Luis Grte'
-                bio= 'holi soy un desarrolador fullstack'
-                email= 'emai@email.com'
-                />
+                <input type="text" ref= {this.entrada} />
+                <button onClick={this.focus}>
+                    focus
+                </button>
+                <button onClick={this.blur}>
+                    blur
+                </button>
             </div>
         )
     }
 }
-class Profile extends Component {
-    static propTypes = {
-        name: PropTypes.string,
-        bio: PropTypes.string,
-        email: PropTypes.string,
-        age: PropTypes.number
+class App extends Component {
 
-    }
     render() {
-        const { name, bio, email } = this.props
         return (
             <div>
-                <h1>
-                    {name}
-                </h1>
-                <p>
-                    {bio}
-                </p>
-                <a href={`mailto:${email}`}>
-                    {email}
-                </a>
+                <h1>React refs</h1>
+                <Entrada/>
             </div>
         )
     }
