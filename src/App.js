@@ -594,25 +594,75 @@ import './global.css'
 // }
 
 //  Reenvió de la prop especial ref con forwardref, solo funciona para componentes funcionales
-const FancyInput = React.forwardRef( (props, ref) => (
-  <div>
-    <input type="text" ref={ref} />
-  </div>
-))
+// const FancyInput = React.forwardRef( (props, ref) => (
+//   <div>
+//     <input type="text" ref={ref} />
+//   </div>
+// ))
 
-class App extends Component {
-    entrada = React.createRef()
+// class App extends Component {
+//     entrada = React.createRef()
 
-    componentDidMount () {
-        console.log(this.entrada)
-    }
-    render() {
-        return (
-          <div>
-            <h1>Reenvío de refs</h1>
-            <FancyInput ref={this.entrada} />
-          </div>
-        );
-    }
+//     componentDidMount () {
+//         console.log(this.entrada)
+//     }
+//     render() {
+//         return (
+//           <div>
+//             <h1>Reenvío de refs</h1>
+//             <FancyInput ref={this.entrada} />
+//           </div>
+//         );
+//     }
+// }
+
+//  Manejando ( Inputs No controlados) con Refs
+
+
+class InputNoControlado extends Component { // componente estatal
+
+  nombre = React.createRef();
+  email = React.createRef();
+
+  handlerClick = () => {
+     const nombre = this.nombre.current.value
+     const email = this.email.current.value
+
+     //manejo de datos
+     this.props.onSend( {nombre, email})
+
+  }
+
+  render() {
+    return (
+      <div>
+        <input type="text" 
+        ref={this.nombre}
+        placeholder='nombre'
+        />
+        <input type="text" 
+        ref={this.email}
+        placeholder='email'
+        />
+        <button onClick={this.handlerClick}>
+            Enviar                     
+        </button>
+      </div>
+    );
+  }
 }
+class App extends Component {
+  send = (data) => {
+      console.log(data);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Inputs No controlados</h1>
+        <InputNoControlado onSend={this.send} />
+      </div>
+    );
+  }
+}
+
 export default App
